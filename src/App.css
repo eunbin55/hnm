@@ -1,0 +1,70 @@
+.login-button {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px;
+  cursor: pointer;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-section {
+  display: flex;
+  justify-content: center;
+}
+
+.menu-list {
+  display: flex;
+  list-style-type: none;
+}
+
+.menu-list li {
+  padding: 10px;
+}
+
+.menu-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-search {
+  margin-right: 5px;
+}
+
+.search-area {
+  border-bottom: 1px solid black;
+  padding-block: 10px;
+}
+
+.search-area input, .search-area input:focus {
+  border: none;
+}
+
+.search-area input:focus-visible {
+  outline: none;
+}
+
+.product-img{
+  transition: 0.3s ease;
+}
+
+.product-img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.login-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ProductDetail Page */
+.detail-img{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.detail-info div, .select-size {
+margin-bottom: 15px;
+}
