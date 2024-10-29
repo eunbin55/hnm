@@ -1,23 +1,18 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faBars, faClose, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faBasketShopping,
+  faClose,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const menuList = [
-    "여성",
-    "Divided",
-    "남성",
-    "신생아/유아",
-    "아동",
-    "H&M Home",
-    "Sale",
-    "지속가능성",
-  ];
+  const menuList = ["Women", "Men", "Baby", "Kids", "Home", "Sale"];
   const goToLoginPage = () => {
     navigate("/login");
   };
@@ -53,12 +48,15 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
         >
           <FontAwesomeIcon icon={faBars} className="icon-menu" />
         </div>
-        <div
-          className="login-button"
-          onClick={() => (!authenticate ? goToLoginPage() : onLogout())}
-        >
-          <FontAwesomeIcon icon={faUser} />
-          <div>{authenticate ? "로그아웃" : "로그인"}</div>
+        <div className="fn-button">
+          {authenticate && <FontAwesomeIcon icon={faBasketShopping} />}
+          <div
+            className="login-button"
+            onClick={() => (!authenticate ? goToLoginPage() : onLogout())}
+          >
+            <FontAwesomeIcon icon={faUser} />
+            <div>{authenticate ? "로그아웃" : "로그인"}</div>
+          </div>
         </div>
       </div>
       <div className="nav-section">
@@ -73,7 +71,9 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
       <div className="menu-area">
         <ul className="menu-list">
           {menuList.map((menu, index) => (
-            <li key={index}>{menu}</li>
+            <li key={index}>
+              <a href="/">{menu}</a>
+            </li>
           ))}
         </ul>
         <div className="search-area">
