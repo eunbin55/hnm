@@ -84,6 +84,9 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
             onKeyDown={(e) => {
               if (e.code === "Enter") onSearch(e);
             }}
+            onKeyUp={(e) => {
+              if (e.code === "Enter") onSearch(e);
+            }}
           />
         </div>
       </div>
