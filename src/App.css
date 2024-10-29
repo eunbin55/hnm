@@ -1,7 +1,12 @@
+.nav-top {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
 .login-button {
   display: flex;
   justify-content: flex-end;
-  margin: 20px;
   cursor: pointer;
   align-items: center;
   gap: 5px;
@@ -27,8 +32,16 @@
   align-items: center;
 }
 
-.icon-search {
+.menu-button {
+  visibility: hidden;
+}
+
+.icon-search, .icon-menu {
   margin-right: 5px;
+}
+
+.icon-menu, .icon-close {
+  cursor: pointer;
 }
 
 .search-area {
@@ -67,4 +80,46 @@
 
 .detail-info div, .select-size {
 margin-bottom: 15px;
+}
+
+.side-menu {
+  position: fixed;
+  background: #f5ede5;
+  height: 100%;
+  width: 250px;
+  z-index: 999;
+  top: 0;
+  left:0;
+}
+
+.icon-close {
+  float: right;
+  padding: 10px;
+}
+
+.side-menu-list {
+  margin: 20px;
+  padding: 0px;
+  li {
+    list-style: none;
+    padding: 5px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+/* media-query */
+@media (max-width: 860px) {
+  .menu-area {
+    justify-content: flex-end;
+    margin-inline: 10px;
+  }
+  .menu-button {
+    visibility: visible;
+  }
+  .menu-list {
+    display: none;
+  }
 }

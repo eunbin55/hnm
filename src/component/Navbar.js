@@ -1,11 +1,13 @@
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 
 const Navbar = ({ authenticate, setAuthenticate }) => {
   const navigate = useNavigate();
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const menuList = [
     "여성",
     "Divided",
@@ -28,12 +30,36 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
   };
   return (
     <div>
-      <div
-        className="login-button"
-        onClick={() => (!authenticate ? goToLoginPage() : onLogout())}
-      >
-        <FontAwesomeIcon icon={faUser} />
-        <div>{authenticate ? "로그아웃" : "로그인"}</div>
+      {sideMenuOpen && (
+        <div className="side-menu">
+          <FontAwesomeIcon
+            className="icon-close"
+            icon={faClose}
+            onClick={() => setSideMenuOpen(false)}
+          />
+          <ul className="side-menu-list">
+            {menuList.map((menu, index) => (
+              <li key={index}>
+                <a href="/">{menu}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div className="nav-top">
+        <div
+          className="menu-button"
+          onClick={() => setSideMenuOpen(!sideMenuOpen)}
+        >
+          <FontAwesomeIcon icon={faBars} className="icon-menu" />
+        </div>
+        <div
+          className="login-button"
+          onClick={() => (!authenticate ? goToLoginPage() : onLogout())}
+        >
+          <FontAwesomeIcon icon={faUser} />
+          <div>{authenticate ? "로그아웃" : "로그인"}</div>
+        </div>
       </div>
       <div className="nav-section">
         <Link to={"/"}>
@@ -46,8 +72,8 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
       </div>
       <div className="menu-area">
         <ul className="menu-list">
-          {menuList.map((menu) => (
-            <li>{menu}</li>
+          {menuList.map((menu, index) => (
+            <li key={index}>{menu}</li>
           ))}
         </ul>
         <div className="search-area">
