@@ -82,10 +82,8 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
             type="text"
             placeholder="제품검색"
             onKeyDown={(e) => {
-              if (e.code === "Enter") onSearch(e);
-            }}
-            onKeyUp={(e) => {
-              if (e.code === "Enter") onSearch(e);
+              if (e.code === "Enter" || e.key === "Enter") onSearch(e);
+              console.log(e);
             }}
           />
         </div>
