@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { productAction } from "../redux/actions/productAction";
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [item, setItem] = useState(null);
-  const getProductDetail = async () => {
-    let url = `https://my-json-server.typicode.com/eunbin55/hnm/products/${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setItem(data);
+  const dispatch = useDispatch();
+  const item = useSelector((state) => state.product.selectedItem);
+  const getProductDetail = () => {
+    dispatch(productAction.getProductDetail(id));
   };
   useEffect(() => {
     getProductDetail();
   }, []);
+
   const addProduct = () => {
     alert("장바구니에 추가되었습니다.");
   };

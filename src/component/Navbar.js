@@ -7,18 +7,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { authenticateAction } from "../redux/actions/authenticateAction";
 
-const Navbar = ({ authenticate, setAuthenticate }) => {
+const Navbar = () => {
   const navigate = useNavigate();
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const menuList = ["Women", "Men", "Baby", "Kids", "Home", "Sale"];
-  const goToLoginPage = () => {
-    navigate("/login");
-  };
-  const onLogout = () => {
-    setAuthenticate(false);
-  };
+  const authenticate = useSelector((state) => state.auth.authenticate);
+  const dispatch = useDispatch();
+  const goToLoginPage = () => navigate("/login");
+  const onLogout = () => dispatch(authenticateAction.logout());
   const onSearch = (e) => {
     const searchText = e.target.value;
     navigate(`/?q=${searchText}`);
@@ -83,7 +83,6 @@ const Navbar = ({ authenticate, setAuthenticate }) => {
             placeholder="제품검색"
             onKeyDown={(e) => {
               if (e.code === "Enter" || e.key === "Enter") onSearch(e);
-              console.log(e);
             }}
           />
         </div>
