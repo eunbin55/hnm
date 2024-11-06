@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { productAction } from "../redux/actions/productAction";
+import { fetchProductById } from "../redux/reducers/productSlice";
 
 const ProductDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const item = useSelector((state) => state.product.selectedItem);
   const getProductDetail = () => {
-    dispatch(productAction.getProductDetail(id));
+    dispatch(fetchProductById(id));
   };
   useEffect(() => {
     getProductDetail();

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { authenticateAction } from "../redux/actions/authenticateAction";
+import { authenticateActions } from "../redux/reducers/authenticateSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Navbar = () => {
   const authenticate = useSelector((state) => state.auth.authenticate);
   const dispatch = useDispatch();
   const goToLoginPage = () => navigate("/login");
-  const onLogout = () => dispatch(authenticateAction.logout());
+  const onLogout = () => dispatch(authenticateActions.logout());
   const onSearch = (e) => {
     const searchText = e.target.value;
     navigate(`/?q=${searchText}`);
